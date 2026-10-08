@@ -1,0 +1,13 @@
+{
+  "name": "cler-atelie-botanico",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "catalog": "node scripts/build-catalog.js",
+    "catalog:check": "node scripts/build-catalog.js --check",
+    "admin": "node scripts/admin-local.js"
+  }
+}

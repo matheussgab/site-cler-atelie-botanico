@@ -10,6 +10,14 @@ Site/          site de produção, estático e sem build — é a fonte da verda
   layout.css
   script.js    carregado com defer
   assets/      somente imagens usadas no site, nomes descritivos em minúsculas
+  admin/       painel do catálogo (/admin/), sem estilos do site
+data/products.json          catálogo — fonte dos produtos (editado pelo painel)
+lib/                        catalog.js (validação e geração), admin.js (API do painel), storage.js (GitHub ou disco)
+api/admin.js                função da Vercel em /api/admin
+scripts/
+  build-catalog.js          regenera os trechos do catálogo em Site/ a partir de data/products.json
+  admin-local.js            servidor local do site + painel, gravando direto nos arquivos
+vercel.json                 publica Site/ como raiz e configura a função do painel
 docs/
   LEVANTAMENTO-AJUSTES.md   pedidos da cliente, decisões e pendências de validação
   Ajustes-contexto/         conversa (_chat.txt) e capturas da cliente — só local, ignorada pelo Git
@@ -21,7 +29,7 @@ old/                        material antigo, apenas referência
 
 ## Regras de trabalho
 
-- Edite `Site/` diretamente. Não rode `old/build-site.py`: ele regeneraria o site a partir do mockup antigo e perderia as edições.
+- Edite `Site/` diretamente, exceto o catálogo (veja abaixo). Não rode `old/build-site.py`: ele regeneraria o site a partir do mockup antigo e perderia as edições.
 - Nada fora de `Site/` deve ser referenciado pelo site. Arquivos novos de imagem vão para `Site/assets/` com caminho relativo (`assets/...`).
 - Não use estilos inline no HTML; o teste falha se houver atributo `style`.
 - Preserve a identidade aprovada: variáveis de cor em `:root` de `layout.css` (`--ivory`, `--moss`, `--sage`, `--gold`...), tipografia Cormorant Garamond (títulos) e Manrope (texto).
@@ -31,12 +39,20 @@ old/                        material antigo, apenas referência
 
 ## Catálogo
 
-Os 7 produtos existem em dois lugares, que precisam ficar sincronizados:
+A fonte é `data/products.json` (preço em **centavos**: `17990` = R$ 179,90; `width`/`height` da foto). A partir dele são gerados, entre marcadores, dois trechos que **não devem ser editados à mão**:
 
-1. Array `PRODUCTS` no início de `Site/script.js` — preço em **centavos** (`17990` = R$ 179,90), categoria, descrição, especificações e imagem.
-2. Cartões estáticos `.product-card` em `Site/index.html` — garantem o catálogo sem JavaScript.
+1. Array `PRODUCTS` em `Site/script.js`, entre `/* catalog:start */` e `/* catalog:end */`.
+2. Cartões `.product-card` em `Site/index.html`, entre `<!-- catalog:cards:start -->` e `<!-- catalog:cards:end -->`, mais o contador `#collection-count`. Garantem o catálogo sem JavaScript.
 
-Biojoias (4 colares + conjunto Sakura) usam a categoria "Biojoia botânica autoral". Presilha e luminária mantêm "Acessório botânico" e "Decoração botânica".
+Depois de mudar o JSON à mão: `node scripts/build-catalog.js` (ou `--check` para só conferir). Os grupos são fixos (`biojoias`, `acessorios`, `decoracao`, iguais aos filtros) e cada um sugere uma categoria: "Biojoia botânica autoral", "Acessório botânico" e "Decoração botânica".
+
+### Painel (`/admin/`)
+
+A cliente lista, cria, edita, reordena e remove produtos. A foto é reduzida no navegador (máx. 1600 px, JPG) e salva como `Site/assets/<id>-<sufixo>.jpg`; fotos que deixam de ser usadas no catálogo, no HTML e no CSS são apagadas. Os textos que ela digita são publicados como estão.
+
+- **Produção:** `api/admin.js` faz um commit no GitHub com o JSON, os arquivos gerados e a foto; a Vercel republica sozinha (~1 min). Cada alteração fica no histórico (`Catálogo: adiciona …`) e pode ser desfeita com `git revert`. Puxe (`git pull`) antes de editar o site localmente.
+- **Local:** `npm run admin` → http://127.0.0.1:4173/admin/ (senha `cler-local` ou `ADMIN_PASSWORD`). Grava direto nos arquivos; depois é só fazer commit.
+- Variáveis na Vercel: `ADMIN_PASSWORD` (senha do painel; trocar desloga todo mundo) e `GITHUB_TOKEN` (token *fine-grained* só deste repositório, permissão *Contents: Read and write*). Opcionais: `GITHUB_REPO`, `GITHUB_BRANCH`.
 
 ## Fluxo comercial
 
@@ -57,14 +73,14 @@ Requer `playwright` (com Chromium) e `beautifulsoup4`. O script sobe um servidor
 
 O teste troca o número do WhatsApp por um fictício e intercepta `wa.me`: nenhuma mensagem real é enviada. Mantenha assim em qualquer teste novo.
 
-Rode a verificação depois de qualquer alteração no site e olhe as capturas de celular quando mexer em textos longos.
+Os números do teste (total de produtos, por grupo, preços da sacola) vêm de `data/products.json`, e ele roda `build-catalog.js --check` se houver Node. Rode a verificação depois de qualquer alteração no site e olhe as capturas de celular quando mexer em textos longos.
 
 ## Publicação
 
-O projeto está ligado à Vercel pela pasta raiz (`.vercel/`). A raiz não tem mais `index.html`: antes de publicar, a Vercel precisa servir `Site/` como raiz (configuração do projeto ou `vercel.json`). Domínio definitivo ainda não definido.
+O projeto está ligado à Vercel pela pasta raiz (`.vercel/`). O `vercel.json` publica `Site/` como raiz e a função `api/admin.js`; o *Root Directory* do projeto na Vercel deve ser a raiz do repositório. Domínio definitivo ainda não definido.
 
 ## Pendências
 
 - Confirmar se o WhatsApp é `9204-9433` ou `99204-9433` (testar `https://wa.me/555192049433` no celular).
 - Validações da cliente listadas na seção 4 de `docs/LEVANTAMENTO-AJUSTES.md`: preços, pares da galeria, FAQ, assinatura do rodapé, decisões da videochamada.
-- Configurar a Vercel para servir `Site/` e definir o domínio.
+- Primeiro deploy com `vercel.json`: conferir que o site abre em `/` e o painel em `/admin/`, com `ADMIN_PASSWORD` e `GITHUB_TOKEN` configurados. Definir o domínio.

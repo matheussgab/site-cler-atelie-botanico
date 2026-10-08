@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="noindex, nofollow" name="robots"/>
+<meta content="#374336" name="theme-color"/>
+<title>Painel do catálogo · Cler</title>
+<link href="/assets/logo-cler.jpg" rel="icon" type="image/jpeg"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="/admin/admin.css" rel="stylesheet"/>
+<script defer src="/admin/admin.js"></script>
+</head>
+<body>
+<header class="admin-header">
+  <div class="admin-wrap header-row">
+    <a class="brand" href="/admin/"><img alt="" height="40" src="/assets/logo-cler.jpg" width="49"/><span>Cler Ateliê Botânico<small>Painel do catálogo</small></span></a>
+    <nav class="header-actions">
+      <a class="link" href="/" rel="noopener" target="_blank">Ver o site</a>
+      <button class="link" hidden id="logout" type="button">Sair</button>
+    </nav>
+  </div>
+</header>
+
+<main class="admin-wrap">
+  <p class="loading" id="loading">Carregando…</p>
+
+  <section class="login" hidden id="login-view">
+    <h1>Entrar no painel</h1>
+    <p>Use a senha do ateliê para editar os produtos do site.</p>
+    <form id="login-form">
+      <label class="field"><span>Senha</span><input autocomplete="current-password" id="password" required type="password"/></label>
+      <p class="error" id="login-error" role="alert"></p>
+      <button class="btn btn-primary" type="submit">Entrar</button>
+    </form>
+  </section>
+
+  <section hidden id="list-view">
+    <div class="list-head">
+      <div>
+        <h1>Produtos à venda</h1>
+        <p id="list-count"></p>
+      </div>
+      <button class="btn btn-primary" id="new-product" type="button">Novo produto</button>
+    </div>
+    <p class="notice" id="mode-note" hidden></p>
+    <p aria-live="polite" class="status" id="status" role="status"></p>
+    <ol class="product-list" id="product-list"></ol>
+    <p class="empty" hidden id="empty">Nenhum produto no site. Clique em “Novo produto” para começar.</p>
+  </section>
+</main>
+
+<dialog aria-labelledby="editor-title" class="editor" id="editor">
+  <form id="product-form" novalidate>
+    <div class="editor-head">
+      <h2 id="editor-title">Novo produto</h2>
+      <button aria-label="Fechar" class="close" data-close type="button">×</button>
+    </div>
+    <div class="editor-body">
+      <div class="photo-field">
+        <div class="photo-frame"><img alt="" hidden id="photo-preview"/><span id="photo-empty">Sem foto</span></div>
+        <label class="btn btn-outline file-button">Escolher foto<input accept="image/jpeg,image/png,image/webp" id="photo-input" type="file"/></label>
+        <small>JPG, PNG ou WEBP. A foto é ajustada automaticamente.</small>
+      </div>
+      <div class="fields">
+        <label class="field"><span>Nome</span><input id="f-name" maxlength="80" required/></label>
+        <div class="field-row">
+          <label class="field"><span>Grupo</span><select id="f-group"></select></label>
+          <label class="field"><span>Preço (R$)</span><input id="f-price" inputmode="decimal" placeholder="179,90" required/></label>
+        </div>
+        <label class="field"><span>Categoria</span><input id="f-category" maxlength="60" required/><small>Aparece abaixo do nome. Preenchida pelo grupo, mas pode mudar.</small></label>
+        <label class="field"><span>Descrição</span><textarea id="f-description" maxlength="700" required rows="5"></textarea></label>
+        <label class="field"><span>Descrição da foto</span><input id="f-alt" maxlength="200" required/><small>O que aparece na foto, em uma frase. Usada por leitores de tela e quando a imagem não carrega.</small></label>
+        <fieldset class="specs">
+          <legend>Especificações</legend>
+          <small>Ex.: “Comprimento” → “45 cm”. Até 10 linhas.</small>
+          <div id="specs-list"></div>
+          <button class="link" id="add-spec" type="button">+ Adicionar especificação</button>
+        </fieldset>
+      </div>
+    </div>
+    <div class="editor-foot">
+      <p class="error" id="form-error" role="alert"></p>
+      <button class="btn btn-outline" data-close type="button">Cancelar</button>
+      <button class="btn btn-primary" id="save" type="submit">Salvar e publicar</button>
+    </div>
+  </form>
+</dialog>
+
+<template id="spec-row">
+  <div class="spec-row">
+    <input aria-label="Especificação" class="spec-label" maxlength="40" placeholder="Comprimento"/>
+    <input aria-label="Valor" class="spec-value" maxlength="120" placeholder="45 cm"/>
+    <button aria-label="Remover especificação" class="icon-btn" data-remove-spec type="button">×</button>
+  </div>
+</template>
+</body>
+</html>

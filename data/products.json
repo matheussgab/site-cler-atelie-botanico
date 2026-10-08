@@ -1,0 +1,184 @@
+[
+  {
+    "id": "girassol",
+    "name": "Colar Girassol 3D",
+    "group": "biojoias",
+    "category": "Biojoia botânica autoral",
+    "price": 17990,
+    "image": "assets/colar-girassol.jpg",
+    "width": 1180,
+    "height": 1289,
+    "alt": "Colar de girassol amarelo com cordão trançado sobre madeira",
+    "description": "A presença do girassol em uma biojoia que guarda a forma e os detalhes da flor. Um pequeno encontro com a natureza para acompanhar os seus dias.",
+    "specs": [
+      [
+        "Cordão",
+        "Encerado ajustável, trançado"
+      ],
+      [
+        "Comprimento",
+        "80 cm"
+      ],
+      [
+        "Pingente",
+        "7 cm"
+      ]
+    ]
+  },
+  {
+    "id": "cosmos",
+    "name": "Colar Flor de Cosmos Laranja",
+    "group": "biojoias",
+    "category": "Biojoia botânica autoral",
+    "price": 12990,
+    "image": "assets/colar-cosmos.jpg",
+    "width": 1080,
+    "height": 1080,
+    "alt": "Colar com flor de cosmos laranja e corrente em aço inox",
+    "description": "Uma flor de cosmos laranja preservada em sua delicadeza e transformada em colar. Cor e natureza em uma criação autoral.",
+    "specs": [
+      [
+        "Corrente",
+        "Aço inox"
+      ],
+      [
+        "Comprimento",
+        "45 cm"
+      ],
+      [
+        "Pingente",
+        "4 cm"
+      ]
+    ]
+  },
+  {
+    "id": "orquidea-lilas",
+    "name": "Colar Flor de Orquídea Lilás",
+    "group": "biojoias",
+    "category": "Biojoia botânica autoral",
+    "price": 13990,
+    "image": "assets/colar-orquidea-lilas.jpg",
+    "width": 1080,
+    "height": 1080,
+    "alt": "Colar de orquídea lilás sobre fundo verde suave",
+    "description": "A forma singular da orquídea lilás em uma peça botânica para levar consigo. Cada detalhe celebra a beleza da flor.",
+    "specs": [
+      [
+        "Corrente",
+        "Aço inox"
+      ],
+      [
+        "Comprimento",
+        "45 cm"
+      ],
+      [
+        "Pingente",
+        "4 cm"
+      ]
+    ]
+  },
+  {
+    "id": "orquidea-translucida",
+    "name": "Colar Orquídea Translúcida",
+    "group": "biojoias",
+    "category": "Biojoia botânica autoral",
+    "price": 14999,
+    "image": "assets/colar-orquidea-translucida.jpg",
+    "width": 1500,
+    "height": 1500,
+    "alt": "Colar com orquídea translúcida e centro amarelado sobre linho",
+    "description": "A delicadeza de uma orquídea translúcida, preservada em uma biojoia de presença suave. Uma criação que revela a flor em seus pequenos detalhes.",
+    "specs": [
+      [
+        "Corrente",
+        "Aço inox"
+      ],
+      [
+        "Comprimento",
+        "45 cm"
+      ],
+      [
+        "Pingente",
+        "5 cm"
+      ]
+    ]
+  },
+  {
+    "id": "sakura",
+    "name": "Conjunto Cerejeira Sakura 3D",
+    "group": "biojoias",
+    "category": "Biojoia botânica autoral",
+    "price": 29000,
+    "image": "assets/conjunto-sakura.jpg",
+    "width": 1193,
+    "height": 1318,
+    "alt": "Conjunto de colar e brincos com flores rosadas de cerejeira Sakura",
+    "description": "Flores de cerejeira Sakura em um conjunto de colar e brincos. Delicadeza botânica em peças que se encontram na mesma composição.",
+    "specs": [
+      [
+        "Inclui",
+        "Colar e par de brincos"
+      ],
+      [
+        "Corrente",
+        "Prata 925 · 45 cm"
+      ],
+      [
+        "Brincos",
+        "Base tarraxa em prata 925"
+      ]
+    ]
+  },
+  {
+    "id": "presilha",
+    "name": "Presilha com Flores Naturais",
+    "group": "acessorios",
+    "category": "Acessório botânico",
+    "price": 12000,
+    "image": "assets/presilha-flores.jpg",
+    "width": 879,
+    "height": 1106,
+    "alt": "Referência de presilhas com pequenas flores naturais e exemplos de uso no cabelo",
+    "description": "Flores naturais diversas em uma presilha delicada para compor o cabelo. A fotografia apresenta referências de composições; o valor corresponde a uma presilha.",
+    "specs": [
+      [
+        "Base",
+        "Bico de pato em metal"
+      ],
+      [
+        "Flores",
+        "Naturais diversas"
+      ],
+      [
+        "Tamanho",
+        "7 cm"
+      ],
+      [
+        "Unidade",
+        "1 presilha"
+      ]
+    ]
+  },
+  {
+    "id": "luminaria",
+    "name": "Luminária Cenário de Jardim",
+    "group": "decoracao",
+    "category": "Decoração botânica",
+    "price": 45000,
+    "image": "assets/luminaria-jardim.jpg",
+    "width": 1273,
+    "height": 1500,
+    "alt": "Luminária com base em madeira e flores em um pequeno cenário de jardim",
+    "description": "Um pequeno cenário de jardim ganha luz e presença em uma peça decorativa botânica. Madeira e elementos naturais em uma composição para habitar os seus espaços.",
+    "specs": [
+      [
+        "Base",
+        "Madeira"
+      ],
+      [
+        "Dimensões",
+        "30 × 20 cm"
+      ]
+    ]
+  }
+]

@@ -5,7 +5,7 @@
       const money = cents => (cents / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
       const escapeHTML = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 
-      const PRODUCTS = [
+      /* catalog:start */const PRODUCTS = [
   {
     "id": "girassol",
     "name": "Colar Girassol 3D",
@@ -174,7 +174,7 @@
       ]
     ]
   }
-];
+];/* catalog:end */
       const productById = new Map(PRODUCTS.map(product => [product.id, product]));
 
       const WHATSAPP_NUMBER = '555192049433'; // WhatsApp oficial: +55 51 9204-9433
