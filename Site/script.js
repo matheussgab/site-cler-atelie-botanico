@@ -173,17 +173,6 @@
         "30 × 20 cm"
       ]
     ]
-  },
-  {
-    "id": "teste",
-    "name": "teste",
-    "group": "biojoias",
-    "category": "Biojoia botânica autoral",
-    "price": 30000,
-    "image": "assets/teste-muz0or5x.jpg",
-    "alt": "teste",
-    "description": "teste",
-    "specs": []
   }
 ];/* catalog:end */
       const productById = new Map(PRODUCTS.map(product => [product.id, product]));
